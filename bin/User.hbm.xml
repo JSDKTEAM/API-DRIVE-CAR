@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated Apr 22, 2019 8:20:44 PM by Hibernate Tools 5.3.6.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping auto-import="true" default-access="property" default-cascade="none" default-lazy="true">
+    <class catalog="driveCar" dynamic-insert="false" dynamic-update="false" mutable="true" name="th.ac.ku.kps.eng.cpe.soa.driveCar.model.User" optimistic-lock="version" polymorphism="implicit" select-before-update="false" table="user">
+        <id name="userId" type="java.lang.Integer">
+            <column name="user_id"/>
+            <generator class="identity"/>
+        </id>
+        <property generated="never" lazy="false" name="username" optimistic-lock="true" type="string" unique="false">
+            <column length="10" name="username" not-null="true" unique="true"/>
+        </property>
+        <property generated="never" lazy="false" name="password" optimistic-lock="true" type="string" unique="false">
+            <column length="200" name="password" not-null="true"/>
+        </property>
+        <property generated="never" lazy="false" name="fname" optimistic-lock="true" type="string" unique="false">
+            <column length="50" name="fname" not-null="true"/>
+        </property>
+        <property generated="never" lazy="false" name="lname" optimistic-lock="true" type="string" unique="false">
+            <column length="50" name="lname" not-null="true"/>
+        </property>
+        <property generated="never" lazy="false" name="address" optimistic-lock="true" type="string" unique="false">
+            <column length="300" name="address"/>
+        </property>
+        <property generated="never" lazy="false" name="phoneNumber" optimistic-lock="true" type="string" unique="false">
+            <column length="10" name="phoneNumber" not-null="true" unique="true"/>
+        </property>
+        <property generated="never" lazy="false" name="typeUser" optimistic-lock="true" type="string" unique="false">
+            <column length="8" name="type_user" not-null="true"/>
+        </property>
+        <set embed-xml="true" fetch="select" inverse="true" lazy="true" mutable="true" name="companies" optimistic-lock="true" sort="unsorted" table="company">
+            <key on-delete="noaction">
+                <column name="user_id"/>
+            </key>
+            <one-to-many class="th.ac.ku.kps.eng.cpe.soa.driveCar.model.Company" embed-xml="true" not-found="exception"/>
+        </set>
+        <set embed-xml="true" fetch="select" inverse="true" lazy="true" mutable="true" name="rents" optimistic-lock="true" sort="unsorted" table="rent">
+            <key on-delete="noaction">
+                <column name="user_id"/>
+            </key>
+            <one-to-many class="th.ac.ku.kps.eng.cpe.soa.driveCar.model.Rent" embed-xml="true" not-found="exception"/>
+        </set>
+    </class>
+</hibernate-mapping>

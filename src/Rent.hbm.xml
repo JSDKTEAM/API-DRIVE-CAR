@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated Apr 27, 2019 4:05:42 PM by Hibernate Tools 5.3.6.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping auto-import="true" default-access="property" default-cascade="none" default-lazy="true">
+    <class catalog="driveCar" dynamic-insert="false" dynamic-update="false" mutable="true" name="th.ac.ku.kps.eng.cpe.soa.driveCar.model.Rent" optimistic-lock="version" polymorphism="implicit" select-before-update="false" table="rent">
+        <id name="rentId" type="java.lang.Integer">
+            <column name="rent_id"/>
+            <generator class="identity"/>
+        </id>
+        <many-to-one class="th.ac.ku.kps.eng.cpe.soa.driveCar.model.Car" embed-xml="true" fetch="select" insert="true" name="car" not-found="exception" optimistic-lock="true" unique="false" update="true">
+            <column name="car_id"/>
+        </many-to-one>
+        <many-to-one class="th.ac.ku.kps.eng.cpe.soa.driveCar.model.User" embed-xml="true" fetch="select" insert="true" name="user" not-found="exception" optimistic-lock="true" unique="false" update="true">
+            <column name="user_id"/>
+        </many-to-one>
+        <property generated="never" lazy="false" name="rentSearch" optimistic-lock="true" type="string" unique="false">
+            <column length="100" name="rent_search" not-null="true"/>
+        </property>
+        <property generated="never" lazy="false" name="status" optimistic-lock="true" type="string" unique="false">
+            <column length="12" name="status" not-null="true"/>
+        </property>
+        <property generated="never" lazy="false" name="refId" optimistic-lock="true" type="java.lang.Integer" unique="false">
+            <column name="ref_id"/>
+        </property>
+        <property generated="never" lazy="false" name="withDriver" optimistic-lock="true" type="byte" unique="false">
+            <column name="withDriver" not-null="true"/>
+        </property>
+        <property generated="never" lazy="false" name="priceRent" optimistic-lock="true" type="double" unique="false">
+            <column name="priceRent" not-null="true" precision="22" scale="0"/>
+        </property>
+        <property generated="never" lazy="false" name="addressNotMember" optimistic-lock="true" type="string" unique="false">
+            <column length="300" name="addressNotMember"/>
+        </property>
+        <property generated="never" lazy="false" name="phoneNumberNotMember" optimistic-lock="true" type="string" unique="false">
+            <column length="10" name="phoneNumberNotMember"/>
+        </property>
+        <property generated="never" lazy="false" name="startDate" optimistic-lock="true" type="timestamp" unique="false">
+            <column length="19" name="start_date" not-null="true"/>
+        </property>
+        <property generated="never" lazy="false" name="endDate" optimistic-lock="true" type="timestamp" unique="false">
+            <column length="19" name="end_date" not-null="true"/>
+        </property>
+        <property generated="never" lazy="false" name="createDate" optimistic-lock="true" type="timestamp" unique="false">
+            <column length="19" name="create_date" not-null="true"/>
+        </property>
+    </class>
+</hibernate-mapping>
