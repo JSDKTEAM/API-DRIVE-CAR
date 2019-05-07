@@ -22,15 +22,18 @@ import javax.ws.rs.core.Response;
 import th.ac.ku.kps.eng.cpe.soa.driveCar.dao.car.CarDAO;
 import th.ac.ku.kps.eng.cpe.soa.driveCar.dao.rent.RentDAO;
 import th.ac.ku.kps.eng.cpe.soa.driveCar.dao.user.UserDAO;
+import th.ac.ku.kps.eng.cpe.soa.driveCar.model.Province;
 import th.ac.ku.kps.eng.cpe.soa.driveCar.model.Rent;
 import th.ac.ku.kps.eng.cpe.soa.driveCar.model.User;
 import th.ac.ku.kps.eng.cpe.soa.driveCar.request.CreateRent;
 import th.ac.ku.kps.eng.cpe.soa.driveCar.request.CreateRentMember;
 import th.ac.ku.kps.eng.cpe.soa.driveCar.request.DeleteRent;
+import th.ac.ku.kps.eng.cpe.soa.driveCar.request.GetRentCars;
+import th.ac.ku.kps.eng.cpe.soa.driveCar.request.GetRentCars2;
 import th.ac.ku.kps.eng.cpe.soa.driveCar.request.UpdateStatusRent;
 import th.ac.ku.kps.eng.cpe.soa.driveCar.response.model.*;
 
-@DeclareRoles({ "ADMIN", "CUSTOMER", "GUEST" })
+@DeclareRoles({"ADMIN","CUSTOMER","COMPANY"})
 @Path("/services")
 public class RentService {
 
@@ -79,7 +82,7 @@ public class RentService {
 	@RolesAllowed({ "ADMIN", "CUSTOMER" })
 	@Path("/rents/users/{userId}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response getRentByRentSeach(@PathParam("userId") int userId) {
+	public Response getRentByUserId(@PathParam("userId") int userId) {
 		try {
 
 			ResponseList<Rent> res = new ResponseList<Rent>();
@@ -94,7 +97,7 @@ public class RentService {
 	}
 
 	@POST
-	@RolesAllowed({ "ADMIN", "CUSTOMER" })
+	@RolesAllowed({ "ADMIN", "CUSTOMER","COMPANY" })
 	@Path("/rents/member")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
@@ -188,7 +191,7 @@ public class RentService {
 	}
 
 	@DELETE
-	@RolesAllowed({ "ADMIN" })
+	@RolesAllowed({ "ADMIN","CUSTOMER" })
 	@Path("/rents")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response deleteRent(DeleteRent request) {
@@ -204,6 +207,25 @@ public class RentService {
 		res.setMsg("not have rentId : " + request.getRentId());
 		return Response.status(500).entity(res).build();
 	}
+	
+	@DELETE
+	@RolesAllowed({ "ADMIN","CUSTOMER","COMPANY" })
+	@Path("/rents/{rentSearch}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response deleteRentByRentSearch(@PathParam("rentSearch") String rentSearch) {
+		ResponseObj<Rent> res = new ResponseObj<Rent>();
+		boolean check = rentDAO.deleteRentByRentSearch(rentSearch);
+		if(check) {
+			res.setMsg("delete success : " + rentSearch);
+			res.setStatus("200");
+			return Response.status(200).entity(res).build();
+		}
+		else {
+			res.setMsg("delete fail  : " + rentSearch);
+			res.setStatus("500");
+			return Response.status(500).entity(res).build();
+		}
+	}
 
 	@GET
 	@RolesAllowed({ "ADMIN" })
@@ -215,6 +237,46 @@ public class RentService {
 			res.setMsg("ok");
 			res.setStatus("200");
 			res.setResult(rentDAO.findById(rent_id));
+			return Response.status(200).entity(res).build();
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+			throw e;
+		}
+	}
+	
+	@POST
+	@PermitAll
+	@Path("/rents/cars/startDate/{startDate}/endDate/{endDate}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response getRentCars(@PathParam("startDate") String startDate, @PathParam("endDate") String endDate,
+			GetRentCars request) throws Exception {
+		System.out.println(request.getProvinceName());
+		try {
+			ResponseList<Rent> res = new ResponseList<Rent>();
+			res.setMsg("ok");
+			res.setStatus("200");
+			res.setResult(rentDAO.seachCar(startDate, endDate, request.getProvinceName()));
+			System.out.println(res);
+			return Response.status(200).entity(res).build();
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+			throw e;
+		}
+	}
+	
+	@POST
+	@PermitAll
+	@Path("/rents/cars/startDate/{startDate}/endDate/{endDate}/withTypeCar")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response getRentCars(@PathParam("startDate") String startDate, @PathParam("endDate") String endDate,
+			GetRentCars2 request) throws Exception {
+		System.out.println(request.getProvinceName());
+		try {
+			ResponseList<Rent> res = new ResponseList<Rent>();
+			res.setMsg("ok");
+			res.setStatus("200");
+			res.setResult(rentDAO.seachCar(startDate, endDate, request.getProvinceName(),request.getTypeCar()));
+			System.out.println(res);
 			return Response.status(200).entity(res).build();
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
@@ -234,6 +296,24 @@ public class RentService {
 			res.setStatus("200");
 			res.setResult(rentDAO.seachCar(startDate, endDate, provinceId));
 			System.out.println(res);
+			return Response.status(200).entity(res).build();
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+			throw e;
+		}
+	}
+	
+	@GET
+	@PermitAll
+	@Path("/rents/cars/startDate/{startDate}/endDate/{endDate}/province/{provinceId}/orderPriceASC/{orderASC}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response getRentCars(@PathParam("startDate") String startDate, @PathParam("endDate") String endDate,
+			@PathParam("provinceId") int provinceId,@PathParam("orderASC") boolean orderASC) throws Exception {
+		try {
+			ResponseList<Rent> res = new ResponseList<Rent>();
+			res.setMsg("ok");
+			res.setStatus("200");
+			res.setResult(rentDAO.seachCar(startDate, endDate, provinceId,orderASC));
 			return Response.status(200).entity(res).build();
 		} catch (Exception e) {
 			System.out.println(e.getMessage());

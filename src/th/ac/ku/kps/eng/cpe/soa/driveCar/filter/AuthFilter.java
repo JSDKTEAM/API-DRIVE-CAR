@@ -78,7 +78,7 @@ public class AuthFilter implements ContainerRequestFilter {
 
 			// check if token matches an user token (set in user/authenticate)
 
-			// verify user access from provided roles ("ADMIN", "CUSTOMER", "GUEST")
+			// verify user access from provided roles ("ADMIN", "CUSTOMER", "COMPANY")
 			if (method.isAnnotationPresent(RolesAllowed.class)) {
 				// get annotated roles
 				RolesAllowed rolesAnnotation = method.getAnnotation(RolesAllowed.class);

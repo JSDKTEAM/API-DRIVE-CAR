@@ -12,7 +12,7 @@ import th.ac.ku.kps.eng.cpe.soa.driveCar.dao.province.ProvinceDAO;
 import th.ac.ku.kps.eng.cpe.soa.driveCar.model.Province;
 import th.ac.ku.kps.eng.cpe.soa.driveCar.response.model.ResponseList;
 
-@DeclareRoles({"ADMIN","CUSTOMER","GUEST"})
+@DeclareRoles({"ADMIN","CUSTOMER","COMPANY"})
 @Path("/services")
 public class ProvinceService {
 	ProvinceDAO provinceDAO = new ProvinceDAO();

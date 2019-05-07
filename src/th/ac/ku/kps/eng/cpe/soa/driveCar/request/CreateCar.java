@@ -10,6 +10,8 @@ public class CreateCar {
 	
 	private String brand;
 	
+	private String model;
+	
 	private double price;
 	
 	private Integer discount;
@@ -80,6 +82,14 @@ public class CreateCar {
 	
 	public void setDiscount(Integer discount) {
 		this.discount = discount;
+	}
+
+	public String getModel() {
+		return model;
+	}
+
+	public void setModel(String model) {
+		this.model = model;
 	}
 	
 

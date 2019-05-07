@@ -1,5 +1,5 @@
 package th.ac.ku.kps.eng.cpe.soa.driveCar.model;
-// Generated Apr 27, 2019 4:05:42 PM by Hibernate Tools 5.3.6.Final
+// Generated Apr 29, 2019 2:16:44 PM by Hibernate Tools 5.3.6.Final
 
 import java.util.Date;
 

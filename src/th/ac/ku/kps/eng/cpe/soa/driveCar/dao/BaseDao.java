@@ -61,9 +61,7 @@ public class BaseDao<T, Id extends Serializable> implements DaoInterface<T, Id> 
 		// TODO Auto-generated method stub
 		Session session = SessionUtil.getSession();
 		Transaction tx = session.beginTransaction();
-		System.out.println(entity);
 		try {
-
 			if (!tx.isActive())
 				tx.begin();
 			session.update(entity);
@@ -114,21 +112,33 @@ public class BaseDao<T, Id extends Serializable> implements DaoInterface<T, Id> 
 	public List<T> findAll() {
 		// TODO Auto-generated method stub
 		Session session = SessionUtil.getSession();
-		Criteria cr = session.createCriteria(this.entityClass);
-		return cr.list();
+		try {
+			Criteria cr = session.createCriteria(this.entityClass);
+			return cr.list();
+		} finally {
+			if (session != null) {
+				session.close();
+			}
+		}
 
 	}
 
 	public List<T> findAll(String orderBy, boolean isAsc) {
 		// TODO Auto-generated method stub
 		Session session = SessionUtil.getSession();
-		Criteria cr = session.createCriteria(this.entityClass);
-		if (isAsc) {
-			cr.addOrder(Order.asc(orderBy));
-		} else {
-			cr.addOrder(Order.desc(orderBy));
+		try {
+			Criteria cr = session.createCriteria(this.entityClass);
+			if (isAsc) {
+				cr.addOrder(Order.asc(orderBy));
+			} else {
+				cr.addOrder(Order.desc(orderBy));
+			}
+			return cr.list();
+		} finally {
+			if (session != null) {
+				session.close();
+			}
 		}
-		return cr.list();
 	}
 
 	public void deleteAll() {

@@ -30,6 +30,7 @@ public class Car implements java.io.Serializable {
 	@JsonManagedReference
 	private Province provinceByProvinceId;
 	private String licensePlate;
+	private String model;
 	private int seatCount;
 	private String typeCar;
 	private String brand;
@@ -41,8 +42,9 @@ public class Car implements java.io.Serializable {
 	public Car() {
 	}
 
-	public Car(String licensePlate, int seatCount, String typeCar, String brand, double price) {
+	public Car(String licensePlate, String model,int seatCount, String typeCar, String brand, double price) {
 		this.licensePlate = licensePlate;
+		this.model = model;
 		this.seatCount = seatCount;
 		this.typeCar = typeCar;
 		this.brand = brand;
@@ -140,6 +142,14 @@ public class Car implements java.io.Serializable {
 
 	public void setRents(Set rents) {
 		this.rents = rents;
+	}
+
+	public String getModel() {
+		return model;
+	}
+
+	public void setModel(String model) {
+		this.model = model;
 	}
 
 }

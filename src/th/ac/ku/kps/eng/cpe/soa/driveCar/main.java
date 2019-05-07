@@ -1,6 +1,7 @@
 package th.ac.ku.kps.eng.cpe.soa.driveCar;
 
 import java.text.ParseException;
+import java.util.Random;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect.Visibility;
 import com.fasterxml.jackson.annotation.PropertyAccessor;
@@ -23,11 +24,11 @@ public class main {
 
 	public static void main(String[] args) throws JsonProcessingException, ParseException {
 		// TODO Auto-generated method stub
-		RentDAO c = new RentDAO() ;
+		//RentDAO c = new RentDAO() ;
 		
 		//convertToJson(c.seachCar("2019-04-16","2019-04-17",1));		
 		
-		convertToJson(c.getRentByRentSeach("c0cfacca-5a52-4f00-b7ba-cb123700cf56"));
+		//convertToJson(c.getRentByRentSeach("c0cfacca-5a52-4f00-b7ba-cb123700cf56"));
 //		CarDAO carDAO = new CarDAO();
 //	    Car c1 = new Car();
 //	    c1.setAddressProvince(1);
@@ -36,6 +37,21 @@ public class main {
 //	    ProvinceDAO provinceDAO = new ProvinceDAO();
 //	    convertToJson(provinceDAO.findById(1));
 		
+		System.out.println(testRamdom());
+	}
+	
+	public static StringBuffer testRamdom() {
+		Random rnd = new Random();
+		long unixTime = System.currentTimeMillis() / 1000L;
+		StringBuffer data = new StringBuffer();
+		data.append("#");
+		data.append((char) (rnd.nextInt(26) + 'A'));
+		data.append(unixTime);
+		data.append((char) (rnd.nextInt(26) + 'A'));
+		data.append((char) (rnd.nextInt(26) + 'A'));
+		data.append((char) (rnd.nextInt(26) + 'A'));
+		data.append((char) (rnd.nextInt(26) + 'A'));
+		return data;
 	}
 	
 	public static String convertToJson(Object obj) throws JsonProcessingException {

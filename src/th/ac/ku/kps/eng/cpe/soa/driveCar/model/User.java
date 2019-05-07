@@ -1,5 +1,5 @@
 package th.ac.ku.kps.eng.cpe.soa.driveCar.model;
-// Generated Apr 27, 2019 4:05:42 PM by Hibernate Tools 5.3.6.Final
+// Generated Apr 29, 2019 2:16:44 PM by Hibernate Tools 5.3.6.Final
 
 import java.util.HashSet;
 import java.util.Set;
@@ -18,6 +18,8 @@ public class User implements java.io.Serializable {
 	private String password;
 	private String fname;
 	private String lname;
+	//@JsonIgnore
+	private String rememberToken;
 	private String address;
 	private String phoneNumber;
 	private String typeUser;
@@ -38,12 +40,13 @@ public class User implements java.io.Serializable {
 		this.typeUser = typeUser;
 	}
 
-	public User(String username, String password, String fname, String lname, String address, String phoneNumber,
-			String typeUser, Set companies, Set rents) {
+	public User(String username, String password, String fname, String lname, String rememberToken, String address,
+			String phoneNumber, String typeUser, Set companies, Set rents) {
 		this.username = username;
 		this.password = password;
 		this.fname = fname;
 		this.lname = lname;
+		this.rememberToken = rememberToken;
 		this.address = address;
 		this.phoneNumber = phoneNumber;
 		this.typeUser = typeUser;
@@ -89,6 +92,14 @@ public class User implements java.io.Serializable {
 
 	public void setLname(String lname) {
 		this.lname = lname;
+	}
+
+	public String getRememberToken() {
+		return this.rememberToken;
+	}
+
+	public void setRememberToken(String rememberToken) {
+		this.rememberToken = rememberToken;
 	}
 
 	public String getAddress() {

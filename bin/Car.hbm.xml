@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!-- Generated Apr 22, 2019 8:20:44 PM by Hibernate Tools 5.3.6.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Apr 29, 2019 2:16:44 PM by Hibernate Tools 5.3.6.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping auto-import="true" default-access="property" default-cascade="none" default-lazy="true">
     <class catalog="driveCar" dynamic-insert="false" dynamic-update="false" mutable="true" name="th.ac.ku.kps.eng.cpe.soa.driveCar.model.Car" optimistic-lock="version" polymorphism="implicit" select-before-update="false" table="car">
-        <id name="carId" type="int">
+        <id name="carId" type="java.lang.Integer">
             <column name="car_id"/>
             <generator class="identity"/>
         </id>
@@ -14,6 +14,9 @@
         </many-to-one>
         <property generated="never" lazy="false" name="licensePlate" optimistic-lock="true" type="string" unique="false">
             <column length="20" name="license_plate" not-null="true"/>
+        </property>
+        <property generated="never" lazy="false" name="model" optimistic-lock="true" type="string" unique="false">
+            <column length="100" name="model"/>
         </property>
         <property generated="never" lazy="false" name="seatCount" optimistic-lock="true" type="int" unique="false">
             <column name="seat_count" not-null="true"/>

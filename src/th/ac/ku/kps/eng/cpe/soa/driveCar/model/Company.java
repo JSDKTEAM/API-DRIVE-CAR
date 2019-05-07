@@ -1,12 +1,11 @@
 package th.ac.ku.kps.eng.cpe.soa.driveCar.model;
-// Generated Apr 27, 2019 4:05:42 PM by Hibernate Tools 5.3.6.Final
+// Generated Apr 29, 2019 2:16:44 PM by Hibernate Tools 5.3.6.Final
 
 import javax.persistence.CascadeType;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
@@ -17,8 +16,8 @@ public class Company implements java.io.Serializable {
 
 	private Integer companyId;
 	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-	@ManyToOne(fetch=FetchType.LAZY,cascade = CascadeType.ALL)
-	@JoinColumn(name = "user_id", nullable = false)
+//	@ManyToOne(fetch=FetchType.LAZY,cascade = CascadeType.ALL)
+//	@JoinColumn(name = "user_id", nullable = false)
 	@JsonManagedReference
 	private User user;
 	private String name;

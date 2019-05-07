@@ -29,7 +29,7 @@ import th.ac.ku.kps.eng.cpe.soa.driveCar.request.CreateCar;
 import th.ac.ku.kps.eng.cpe.soa.driveCar.request.UpdateCar;
 import th.ac.ku.kps.eng.cpe.soa.driveCar.response.model.*;
 
-@DeclareRoles({"ADMIN","CUSTOMER","GUEST"})
+@DeclareRoles({"ADMIN","CUSTOMER","COMPANY"})
 @Path("/services")
 public class CarService {
 
@@ -57,6 +57,19 @@ public class CarService {
 			throw e;
 		}
 	}
+	
+	@GET
+	@PermitAll
+	@Path("/cars/{carId}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response getCar(@PathParam("carId") int carId) {
+		ResponseObj<Car> res = new ResponseObj<Car>();
+		Car car = carDAO.findById(carId);
+		res.setStatus("200");
+		res.setMsg("OK");
+		res.setResult(car);
+		return Response.status(200).entity(res).build();
+	}
 
 	@POST
 	@RolesAllowed({"ADMIN"})
@@ -68,6 +81,7 @@ public class CarService {
 		ResponseObj<Car> res = new ResponseObj<Car>();
 		try {
 			Car car = new Car();
+			car.setModel(request.getModel());
 			car.setBrand(request.getBrand());
 			car.setSeatCount(request.getSeatCount());
 			car.setDiscount(request.getDiscount());
@@ -100,6 +114,7 @@ public class CarService {
 		ResponseObj<Car> res = new ResponseObj<Car>();
 		
 		Car car = carDAO.findById(carId);
+		car.setModel(request.getModel());
 		car.setBrand(request.getBrand());
 		car.setDiscount(request.getDiscount());
 		car.setLicensePlate(request.getLicensePlate());

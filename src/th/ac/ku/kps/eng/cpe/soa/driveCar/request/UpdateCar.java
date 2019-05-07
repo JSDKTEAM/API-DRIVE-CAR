@@ -19,6 +19,8 @@ public class UpdateCar {
 	private double price;
 
 	private int discount;
+	
+	private String model;
 
 	public String getLicensePlate() {
 		return licensePlate;
@@ -82,6 +84,14 @@ public class UpdateCar {
 
 	public void setDiscount(int discount) {
 		this.discount = discount;
+	}
+
+	public String getModel() {
+		return model;
+	}
+
+	public void setModel(String model) {
+		this.model = model;
 	}
 
 }

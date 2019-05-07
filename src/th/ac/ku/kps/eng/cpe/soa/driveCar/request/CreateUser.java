@@ -17,7 +17,7 @@ public class CreateUser {
 	
 	private String typeUser;
 	
-	private Company company;
+	private String companyName;
 
 	public String getUsername() {
 		return username;
@@ -75,13 +75,15 @@ public class CreateUser {
 		this.typeUser = typeUser;
 	}
 
-	public Company getCompany() {
-		return company;
+	public String getCompanyName() {
+		return companyName;
 	}
 
-	public void setCompany(Company company) {
-		this.company = company;
+	public void setCompanyName(String companyName) {
+		this.companyName = companyName;
 	}
+
+	
 	
 	
 

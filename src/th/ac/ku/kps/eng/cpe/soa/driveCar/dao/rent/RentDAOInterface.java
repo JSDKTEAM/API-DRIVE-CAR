@@ -11,12 +11,22 @@ public interface RentDAOInterface extends DaoInterface<Rent, Long> {
 	
 	boolean createRent(Rent rent);
 	
+	List<Rent> seachCar(String start_date,String end_date,String province,String typeCar) throws ParseException;
+	
+	List<Rent> seachCar(String start_date,String end_date,String province) throws ParseException;
+	
 	List<Rent> seachCar(String start_date,String end_date,int province_id) throws ParseException;
 	
+	List<Rent> seachCar(String start_date,String end_date,int province_id, boolean isAsc) throws ParseException;
+	
+
+ 	
 	Rent getRentByRentSeach(String rentSearch);
 	
 	List<Rent> getRentByUserId(int UserId);
 	
 	boolean updateStatusRent(UpdateStatusRent rent);
+	
+	boolean deleteRentByRentSearch(String rentSearch);
 	
 }
