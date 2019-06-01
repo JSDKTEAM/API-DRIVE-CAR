@@ -6,6 +6,7 @@ import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
@@ -15,10 +16,11 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 public class Company implements java.io.Serializable {
 
 	private Integer companyId;
-	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+//	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 //	@ManyToOne(fetch=FetchType.LAZY,cascade = CascadeType.ALL)
 //	@JoinColumn(name = "user_id", nullable = false)
-	@JsonManagedReference
+//	@JsonManagedReference
+	@JsonBackReference
 	private User user;
 	private String name;
 	private String phoneNumber;

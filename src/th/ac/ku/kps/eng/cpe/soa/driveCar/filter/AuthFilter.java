@@ -17,12 +17,12 @@ import javax.ws.rs.container.ContainerRequestContext;
 import javax.ws.rs.container.ContainerRequestFilter;
 import javax.ws.rs.container.ResourceInfo;
 import javax.ws.rs.core.Context;
-import javax.ws.rs.core.HttpHeaders;
+
 import javax.ws.rs.core.MultivaluedMap;
-import javax.ws.rs.core.Response;
+
 import javax.ws.rs.core.Response.Status;
 
-import org.jose4j.jwt.consumer.InvalidJwtException;
+
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.JWTVerifier;
@@ -30,7 +30,7 @@ import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTVerificationException;
 import com.auth0.jwt.interfaces.Claim;
 import com.auth0.jwt.interfaces.DecodedJWT;
-import com.sun.media.jfxmedia.logging.Logger;
+
 
 import th.ac.ku.kps.eng.cpe.soa.driveCar.dao.user.UserDAO;
 import th.ac.ku.kps.eng.cpe.soa.driveCar.model.User;

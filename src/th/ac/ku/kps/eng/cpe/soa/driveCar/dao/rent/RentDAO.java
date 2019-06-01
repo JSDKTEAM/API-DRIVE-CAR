@@ -19,8 +19,9 @@ import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 import org.hibernate.transform.Transformers;
 
-import th.ac.ku.kps.eng.cpe.soa.dao.SessionUtil;
+
 import th.ac.ku.kps.eng.cpe.soa.driveCar.dao.BaseDao;
+import th.ac.ku.kps.eng.cpe.soa.driveCar.dao.SessionUtil;
 import th.ac.ku.kps.eng.cpe.soa.driveCar.dao.car.CarDAO;
 import th.ac.ku.kps.eng.cpe.soa.driveCar.model.*;
 import th.ac.ku.kps.eng.cpe.soa.driveCar.request.UpdateStatusRent;
@@ -69,8 +70,8 @@ public class RentDAO extends BaseDao<Rent, Long> implements RentDAOInterface {
 			Criteria cr = session.createCriteria(Rent.class, "rent");
 			cr.createAlias("rent.car", "car");
 			cr.createAlias("car.provinceByAddressProvince", "province");
-//		cr.add(Restrictions.eq("startDate", startDate));
-//		cr.add(Restrictions.eq("endDate", endDate));
+			//cr.add(Restrictions.eq("startDate", startDate));
+			//	cr.add(Restrictions.eq("endDate", endDate));
 			cr.add(Restrictions.eq("province.provinceId", province_id));
 			// .setProjection(Projections.projectionList();
 			// .add(Projections.property("car.carId"), "carId"));

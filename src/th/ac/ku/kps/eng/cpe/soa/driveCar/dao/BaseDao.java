@@ -85,6 +85,7 @@ public class BaseDao<T, Id extends Serializable> implements DaoInterface<T, Id> 
 		return entityClass;
 	}
 
+
 	public boolean delete(Object entity) {
 		// TODO Auto-generated method stub
 		Session session = SessionUtil.getSession();

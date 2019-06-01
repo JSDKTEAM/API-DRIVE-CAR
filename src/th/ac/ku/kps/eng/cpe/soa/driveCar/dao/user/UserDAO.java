@@ -7,8 +7,9 @@ import org.hibernate.Session;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 
-import th.ac.ku.kps.eng.cpe.soa.dao.SessionUtil;
+
 import th.ac.ku.kps.eng.cpe.soa.driveCar.dao.BaseDao;
+import th.ac.ku.kps.eng.cpe.soa.driveCar.dao.SessionUtil;
 import th.ac.ku.kps.eng.cpe.soa.driveCar.dao.rent.RentDAOInterface;
 import th.ac.ku.kps.eng.cpe.soa.driveCar.model.Rent;
 import th.ac.ku.kps.eng.cpe.soa.driveCar.model.User;
@@ -53,11 +54,11 @@ public class UserDAO extends BaseDao<User, Long> implements UserDAOInterface {
 		Session session = SessionUtil.getSession();
 		try {
 			Criteria cr = session.createCriteria(User.class, "user");
-			cr.add(Restrictions.eq("typeUser", typeUser));
-//			.createCriteria("user.companies" , "company")
+			cr.add(Restrictions.eq("typeUser", typeUser))
+			.createCriteria("user.companies" , "company");
 //	        .setProjection( Projections.projectionList()
-//            .add(Projections.property("company.name"))
-//            .add(Projections.property("company.phoneNumber")));
+//	        .add(Projections.property("user"))
+//            .add(Projections.property("user.companies")));
 			return cr.list();
 		} finally {
 			if (session != null) {

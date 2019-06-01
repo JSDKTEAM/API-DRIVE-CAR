@@ -10,7 +10,7 @@ import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.criterion.Restrictions;
 
-import th.ac.ku.kps.eng.cpe.soa.dao.SessionUtil;
+
 import th.ac.ku.kps.eng.cpe.soa.driveCar.dao.BaseDao;
 import th.ac.ku.kps.eng.cpe.soa.driveCar.dao.car.CarDAOInterface;
 import th.ac.ku.kps.eng.cpe.soa.driveCar.model.Car;
